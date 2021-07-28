@@ -92,6 +92,9 @@ namespace Svc {
             //!  \param opCode the opcode being registered.
             //!  \param key the key value that is returned with the ping response
             void pingIn_handler(NATIVE_INT_TYPE portNum, U32 key);
+
+            void Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context);
+
             //!  \brief NO_OP command handler
             //!
             //!  A test command that does nothing

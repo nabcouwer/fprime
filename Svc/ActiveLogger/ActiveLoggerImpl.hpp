@@ -57,6 +57,8 @@ namespace Svc {
                 FilterEnabled enabled; //<! filter is enabled
             } m_filterState[EventLevel_MAX];
 
+            void Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context);
+
             // Working members
             Fw::LogPacket m_logPacket; //!< packet buffer for assembling log packets
             Fw::ComBuffer m_comBuffer; //!< com buffer for sending event buffers

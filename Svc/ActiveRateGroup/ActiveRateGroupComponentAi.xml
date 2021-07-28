@@ -32,6 +32,12 @@
             <comment>Ping output port for health</comment>
         </port>
 
+        <port name="Service" data_type="Sched" kind="guarded_input" max_number="1">
+          <comment>
+            Manual queue-clearing port for threadless environments
+          </comment>
+        </port>
+
     </ports>
     <telemetry>
         <channel id="0" name="RgMaxTime" data_type="U32" abbrev="S001-000" update="on_change" format_string = "%u us">

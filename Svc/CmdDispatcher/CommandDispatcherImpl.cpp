@@ -31,6 +31,28 @@ namespace Svc {
         CommandDispatcherComponentBase::init(queueDepth);
     }
 
+    void CommandDispatcherImpl::Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context){
+      //      ActiveComponentBase::s_baseBareTask(this);
+            if (!this->m_task.isStarted()) {
+                this->m_task.setStarted(true);
+                this->preamble();
+            }
+            if (this->m_queue.getNumMsgs() == 0) {
+                return;
+            }
+            ActiveComponentBase::MsgDispatchStatus loopStatus = this->doDispatch();
+            switch (loopStatus) {
+                case QueuedComponentBase::MSG_DISPATCH_OK: // if normal message processing, continue
+                    break;
+                case QueuedComponentBase::MSG_DISPATCH_EXIT:
+                    this->finalizer();
+                    this->m_task.setStarted(false);
+                    break;
+                default:
+                    FW_ASSERT(0,(NATIVE_INT_TYPE)loopStatus);
+            }
+          }
+
     void CommandDispatcherImpl::compCmdReg_handler(NATIVE_INT_TYPE portNum, FwOpcodeType opCode) {
         // search for an empty slot
         bool slotFound = false;

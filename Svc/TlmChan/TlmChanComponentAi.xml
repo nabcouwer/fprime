@@ -37,6 +37,11 @@
             Ping output port
             </comment>
         </port>
+        <port name="Service" data_type="Sched" kind="guarded_input" max_number="1">
+          <comment>
+            Manual queue-clearing port for threadless environments
+          </comment>
+        </port>
     </ports>
 </component>
 

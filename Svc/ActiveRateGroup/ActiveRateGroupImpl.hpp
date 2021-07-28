@@ -97,6 +97,8 @@ namespace Svc {
             //!  It issues and event indicating that the task has started.
             //!
 
+            void Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context);
+
             void preamble(void);
 
             U32 m_cycles; //!< cycles executed

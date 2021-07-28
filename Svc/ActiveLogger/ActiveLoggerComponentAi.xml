@@ -2,6 +2,7 @@
 
 
 <component name="ActiveLogger" kind="active" namespace="Svc">
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
     <import_port_type>Fw/Log/LogPortAi.xml</import_port_type>
     <import_port_type>Fw/Com/ComPortAi.xml</import_port_type>
     <import_port_type>Svc/Fatal/FatalEventPortAi.xml</import_port_type>
@@ -37,6 +38,12 @@
             Ping output port
             </comment>
         </port>
+        <port name="Service" data_type="Sched" kind="guarded_input" max_number="1">
+          <comment>
+            Manual queue-clearing port for threadless environments
+          </comment>
+        </port>
+
     </ports>
 </component>
 

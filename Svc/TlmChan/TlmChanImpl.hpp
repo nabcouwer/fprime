@@ -47,6 +47,8 @@ namespace Svc {
                 U32 key /*!< Value to return to pinger*/
             );
 
+            void Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context);
+
             typedef struct tlmEntry {
                 FwChanIdType id; //!< telemetry id stored in slot
                 bool updated; //!< set whenever a value has been written. Used to skip if writing out values for downlinking

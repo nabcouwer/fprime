@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component name="CommandDispatcher" kind="active" namespace="Svc">
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
     <import_port_type>Fw/Cmd/CmdPortAi.xml</import_port_type>
     <import_port_type>Fw/Cmd/CmdResponsePortAi.xml</import_port_type>
     <import_port_type>Fw/Cmd/CmdRegPortAi.xml</import_port_type>
@@ -42,6 +43,11 @@
             <comment>
             Ping output port
             </comment>
+        </port>
+        <port name="Service" data_type="Sched" kind="guarded_input" max_number="1">
+          <comment>
+            Manual queue-clearing port for threadless environments
+          </comment>
         </port>
     </ports>
     <commands>

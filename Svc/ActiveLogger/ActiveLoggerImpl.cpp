@@ -42,6 +42,28 @@ namespace Svc {
         ActiveLoggerComponentBase::init(queueDepth,instance);
     }
 
+    void ActiveLoggerImpl::Service_handler(NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context){
+      //      ActiveComponentBase::s_baseBareTask(this);
+            if (!this->m_task.isStarted()) {
+                this->m_task.setStarted(true);
+                this->preamble();
+            }
+            if (this->m_queue.getNumMsgs() == 0) {
+                return;
+            }
+            ActiveComponentBase::MsgDispatchStatus loopStatus = this->doDispatch();
+            switch (loopStatus) {
+                case QueuedComponentBase::MSG_DISPATCH_OK: // if normal message processing, continue
+                    break;
+                case QueuedComponentBase::MSG_DISPATCH_EXIT:
+                    this->finalizer();
+                    this->m_task.setStarted(false);
+                    break;
+                default:
+                    FW_ASSERT(0,(NATIVE_INT_TYPE)loopStatus);
+            }
+          }
+
     void ActiveLoggerImpl::LogRecv_handler(NATIVE_INT_TYPE portNum, FwEventIdType id, Fw::Time &timeTag, Fw::LogSeverity severity, Fw::LogBuffer &args) {
 
         // make sure ID is not zero. Zero is reserved for ID filter.
