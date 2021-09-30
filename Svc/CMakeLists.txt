@@ -40,7 +40,7 @@ add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/TlmChan/")
 
 # Check for disabling text loggers
 # Building these fails if FW_ENABLE_TEXT_LOGGING == 0
-if (NOT FPRIME_DISABLE_TEXTLOGGERS)
+if (NOT FPRIME_DISABLE_TEXT_LOGGERS)
 	add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/PassiveConsoleTextLogger/")
 	add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/ActiveTextLogger/")
 endif()
